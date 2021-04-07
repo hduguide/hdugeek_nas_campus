@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HDUGeek NAS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="shortcut icon" href="./image/favicon.ico">
+<link href="./css/main.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/font.css">
+<link href="./vidage/normalize.min.css" rel="stylesheet" />
+<link href="./vidage/vidage.css" rel="stylesheet" />
+<style>.vidage::before {background-image: url('image/bg.jpg');}</style>
+
+</head>
+<body>
+<!-- OPEN: Vidage Structure -->
+<div class="vidage">
+	<video id="vidage" class="vidage-video" preload="metadata" loop autoplay muted volume="0.2">
+		<source id="video4k" src="image/video.mp4" type="video/mp4">
+	</video>
+</div>
+<!-- CLOSE: Vidage Structure -->
+<!-- OPEN: Demo Related -->
+<header>
+	<div class="container intro" style="position: absolute; top: 0px;">
+	<a class="brand" href="https://www.bilibili.com/video/BV1Rh411o7U5" style="font-family:Microsoft YaHei;font-size:100%;color:#e0e0e0" > HDUGeek NAS 内网版<hr style="height:5px ; border:none;border-top:2px solid #e0e0e0;" />川藏线 4K Video VER.</a>
+	</div>
+</header>
+<div class="container intro">
+	<nav id="ctrl" class="toggle">
+	<i class="iconfont icon-close" onclick="toggle();"></i>
+	<a style="font-family:Montserrat,sans-serif;font-size:85%;" href="https://hdustack.studylong.workers.dev/" class="link top show" target="_blank">HDU导航</a>
+	<a style="font-family:Montserrat,sans-serif" href="https://help-hdugeek-nas.pages.dev/" class="link top show" target="_blank">帮助中心</a>
+	<a id="ds" style="font-family:Montserrat,sans-serif" href="" class="link top no-iframe show" target="_blank">应用桌面</a>
+	<a id="fs" style="font-family:Montserrat,sans-serif" href="" class="link top no-iframe show" target="_blank">资料下载</a>
+	<a style="font-family:Montserrat,sans-serif" href="javascript:void(0)" class="link left show" target="_self" onclick="onvideo()">
+	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" width="32" height="32"><path id="volumesvg" d="M35.735,24.4l4.542-4.548c0.39-0.392,0.39-1.024-0.001-1.415c-0.391-0.389-1.024-0.39-1.415,0.001l-4.545,4.552 l-4.545-4.552c-0.391-0.391-1.024-0.39-1.415-0.001c-0.391,0.391-0.391,1.023-0.001,1.415l4.542,4.548l-4.542,4.547 c-0.39,0.392-0.39,1.024,0.001,1.415c0.195,0.194,0.451,0.292,0.707,0.292s0.513-0.098,0.708-0.293l4.545-4.551l4.545,4.551 c0.195,0.195,0.452,0.293,0.708,0.293s0.512-0.098,0.707-0.292c0.391-0.391,0.391-1.023,0.001-1.415L35.735,24.4z M22.642,38.06c0.152,0,0.306-0.035,0.448-0.105c0.338-0.17,0.552-0.516,0.552-0.895v-24c0-0.379-0.214-0.725-0.552-0.895 c-0.341-0.168-0.744-0.132-1.047,0.094l-8.2,6.134H9.569c-0.553,0-1,0.447-1,1v11.334c0,0.553,0.447,1,1,1h4.273l8.2,6.134 C22.219,37.992,22.43,38.06,22.642,38.06z M21.642,35.063l-6.867-5.137c-0.173-0.129-0.383-0.199-0.599-0.199h-3.606v-9.334h3.606 c0.216,0,0.426-0.07,0.599-0.199l6.867-5.137V35.063z" p-id="3738" fill="#bfbfbf"></path></svg></a>
+	</nav>
+</div>
+<!-- CLOSE: Demo Related -->
+<footer>
+<a href="#" > © 2020 hdugeek All Rights Reserved. 川藏线 4K Video FROM BLANK. </a>
+</footer>
+<script src="./js/bundle.js"></script>
+<script src="./vidage/vidage.js"></script>
+<script>
+function onLine(){
+	var test = window.location.host;
+	var Obj = document.getElementById("fs");
+    Obj.href = 'http://'+test+':7000';
+	var Obj = document.getElementById("ds");
+    Obj.href = 'http://'+test+':5000';
+    
+    var img = new Image();
+    img.src = 'http://'+test+':5000/webman/resources/images/default/1x/preview_bar_bg.png';
+	img.src += '?t='+(+new Date());
+    img.onerror=function(){
+        alert("无法访问纯内网端口，可能使用HDU VPN访问校园网，只能使用资料下载，无法访问应用桌面（5000端口）");
+		var Obj = document.getElementById("fs");
+    	Obj.href = 'http://'+test+'/file';
+    };
+
+}
+svgpath=document.getElementById("volumesvg");
+function onvideo(){
+	if(document.getElementById("vidage").muted==false){document.getElementById("vidage").muted=true;svgpath.setAttribute('d', 'M35.735,24.4l4.542-4.548c0.39-0.392,0.39-1.024-0.001-1.415c-0.391-0.389-1.024-0.39-1.415,0.001l-4.545,4.552 l-4.545-4.552c-0.391-0.391-1.024-0.39-1.415-0.001c-0.391,0.391-0.391,1.023-0.001,1.415l4.542,4.548l-4.542,4.547 c-0.39,0.392-0.39,1.024,0.001,1.415c0.195,0.194,0.451,0.292,0.707,0.292s0.513-0.098,0.708-0.293l4.545-4.551l4.545,4.551 c0.195,0.195,0.452,0.293,0.708,0.293s0.512-0.098,0.707-0.292c0.391-0.391,0.391-1.023,0.001-1.415L35.735,24.4z M22.642,38.06c0.152,0,0.306-0.035,0.448-0.105c0.338-0.17,0.552-0.516,0.552-0.895v-24c0-0.379-0.214-0.725-0.552-0.895 c-0.341-0.168-0.744-0.132-1.047,0.094l-8.2,6.134H9.569c-0.553,0-1,0.447-1,1v11.334c0,0.553,0.447,1,1,1h4.273l8.2,6.134 C22.219,37.992,22.43,38.06,22.642,38.06z M21.642,35.063l-6.867-5.137c-0.173-0.129-0.383-0.199-0.599-0.199h-3.606v-9.334h3.606 c0.216,0,0.426-0.07,0.599-0.199l6.867-5.137V35.063z');}
+	else {document.getElementById("vidage").muted=false;svgpath.setAttribute('d', 'M37.341,37.567c0.264,0,0.526-0.104,0.724-0.31c2.852-2.987,4.487-7.332,4.487-11.922c0-4.589-1.636-8.934-4.486-11.921 c-0.381-0.399-1.016-0.414-1.414-0.033c-0.399,0.382-0.414,1.015-0.033,1.414c2.5,2.619,3.934,6.461,3.934,10.54 c0,4.08-1.434,7.922-3.935,10.541c-0.381,0.399-0.366,1.032,0.033,1.414C36.844,37.476,37.093,37.567,37.341,37.567z M34.016,34.482c0.252,0,0.504-0.095,0.698-0.284c2.225-2.172,3.501-5.401,3.501-8.861c0-3.461-1.276-6.69-3.501-8.862 c-0.395-0.385-1.027-0.378-1.414,0.018c-0.386,0.396-0.378,1.028,0.018,1.414c1.841,1.797,2.897,4.506,2.897,7.431 s-1.057,5.633-2.897,7.43c-0.396,0.386-0.403,1.019-0.018,1.414C33.496,34.382,33.756,34.482,34.016,34.482z M30.084,29.571c-0.424,0.354-0.479,0.985-0.126,1.409c0.198,0.236,0.482,0.358,0.769,0.358c0.226,0,0.453-0.076,0.641-0.232 c1.572-1.314,2.511-3.472,2.511-5.77c0-2.333-0.961-4.508-2.57-5.82c-0.428-0.35-1.058-0.282-1.407,0.144 c-0.349,0.428-0.284,1.058,0.144,1.407c1.148,0.936,1.834,2.532,1.834,4.27C31.878,27.05,31.207,28.633,30.084,29.571z M24.03,12.536l-8.203,6.134h-4.275c-0.553,0-1,0.447-1,1v11.334c0,0.553,0.447,1,1,1h4.275l8.203,6.134 c0.176,0.132,0.387,0.199,0.599,0.199c0.152,0,0.307-0.035,0.448-0.105c0.338-0.17,0.552-0.516,0.552-0.895v-24 c0-0.379-0.214-0.725-0.552-0.895C24.739,12.275,24.332,12.31,24.03,12.536z M23.629,35.341l-6.87-5.138 c-0.173-0.129-0.383-0.199-0.599-0.199h-3.608V20.67h3.608c0.216,0,0.426-0.07,0.599-0.199l6.87-5.138V35.341z');}
+}
+onLine();
+</script>
+<script>new Vidage('#vidage');</script>
+</body>
+</html>
